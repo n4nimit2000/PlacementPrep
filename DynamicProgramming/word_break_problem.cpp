@@ -4,31 +4,26 @@ using namespace std;
 #define ll long long int
 #define vll vector<ll>
 
-ll get_number_of_sentences(string &s, unordered_set<string> &dictionary)
+ll get_number_of_sentences(string &s, unordered_set<string> &dict)
 {
     ll n = s.size();
-    vll dp(n, 0);
+    vll dp(n + 1, 0);
+    dp[0] = 1;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 0; j <= i; j++)
+        string suf = "";
+        for (int j = i - 1; j >= 0; j--)
         {
-            string suf = s.substr(j, i - j + 1);
-            if (dictionary.find(suf) != dictionary.end())
+            suf = s[j] + suf;
+            if (dp[j] != 0 && dict.find(suf) != dict.end())
             {
-                if (j != 0)
-                {
-                    dp[i] += dp[j - 1];
-                }
-                else
-                {
-                    dp[i] += 1;
-                }
+                dp[i] += dp[j];
             }
         }
     }
 
-    return dp[n - 1];
+    return dp[n];
 }
 
 int main()
