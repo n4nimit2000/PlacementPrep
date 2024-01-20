@@ -102,6 +102,8 @@ int main()
 Bellman Ford Algorithm: Single source shortest path for directed graphs containing negative weight edges.
 Time Complexity = O(NE)
 
+Ref: https://www.youtube.com/watch?v=0vVofAhAYjc&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=41&ab_channel=takeUforward
+
 
 Sample Input:
 5 8
@@ -116,6 +118,11 @@ Sample Input:
 0
 
 Sample Output:
+Distance of node 0 from 0 is 0
+Distance of node 1 from 0 is -1
+Distance of node 2 from 0 is 2
+Distance of node 3 from 0 is -2
+Distance of node 4 from 0 is 1
 
 
 */
