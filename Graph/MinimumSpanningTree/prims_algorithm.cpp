@@ -128,6 +128,8 @@ int main()
 Prim's Algorithm: Create Minimum Spanning Tree (MST) of the given graph
 Time Complexity: O(ElogN)
 
+Ref: https://www.youtube.com/watch?v=mJcZjjKzeqk&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=45&ab_channel=takeUforward
+
 Sample Input:
 9 14
 0 1 4
