@@ -58,16 +58,17 @@ public:
             ipair data = pq.top();
             pq.pop();
 
-            ll node = data.second;
-            ll distance_till_node = data.first;
+            ll cur_node = data.second;
+            ll distance_till_cur = data.first;
 
-            for (auto neigh : edges[node])
+            for (auto neigh : edges[cur_node])
             {
-
-                if (distance[neigh.first] > distance_till_node + neigh.second)
+                ll neigh_node = neigh.first;
+                ll ed_wt = neigh.second;
+                if (distance[neigh_node] > distance_till_cur + ed_wt)
                 {
-                    distance[neigh.first] = distance_till_node + neigh.second;
-                    pq.push({distance[neigh.first], neigh.first});
+                    distance[neigh_node] = distance_till_cur + ed_wt;
+                    pq.push({distance[neigh_node], neigh_node});
                 }
             }
         }
