@@ -35,22 +35,22 @@ public:
         }
     }
 
-    bool check_contains_cycle(ll node, vector<bool> &visited, vector<bool> &stack)
+    bool check_contains_cycle(ll node, vector<bool> &visited, vector<bool> &pathVisited)
     {
-        visited[node] = stack[node] = true;
+        visited[node] = pathVisited[node] = true;
 
         for (auto neigh : edges[node])
         {
-            if (stack[neigh])
+            if (pathVisited[neigh])
                 return true;
             else if (!visited[neigh])
             {
-                if (check_contains_cycle(neigh, visited, stack))
+                if (check_contains_cycle(neigh, visited, pathVisited))
                     return true;
             }
         }
 
-        stack[node] = false;
+        pathVisited[node] = false;
 
         return false;
     }
@@ -59,13 +59,13 @@ public:
 void contains_cycle(Graph &graph)
 {
     int n = graph.get_number_of_nodes();
-    vector<bool> visited(n, false), stack(n, false);
+    vector<bool> visited(n, false), pathVisited(n, false);
 
     for (int node = 0; node < n; node++)
     {
         if (!visited[node])
         {
-            if (graph.check_contains_cycle(node, visited, stack))
+            if (graph.check_contains_cycle(node, visited, pathVisited))
             {
                 cout << "Contains cycle\n";
                 return;
@@ -96,6 +96,8 @@ int main()
 
 /*
 Check if the given directed graph contains a cycle.
+
+Ref: https://www.youtube.com/watch?v=9twcmtQj4DU&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=19&ab_channel=takeUforward
 
 Sample Input:
 4 5
