@@ -25,7 +25,7 @@ void dfs(ll cur, ll par, ll depth = 0)
 
 void make_table(ll n)
 {
-    dfs(0, 0);
+    dfs(0, -1);
 
     for (int j = 1; j <= maxN; j++)
     {
