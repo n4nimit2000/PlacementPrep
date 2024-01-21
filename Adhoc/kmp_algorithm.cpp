@@ -56,7 +56,7 @@ int main()
 
 /*
 Given a string 's' and a pattern 'pat', write a function that counts all the occurences of 'pat' in 's'.
-We do a preprocessing where we create LPS(Longest Prefix with is also a Suffix) table.
+We do a preprocessing where we create LPS(Longest Prefix which is also a Suffix) table.
 Time complexity = O(N)  -> N is length of 's'
 Space complexity = O(M)
 
