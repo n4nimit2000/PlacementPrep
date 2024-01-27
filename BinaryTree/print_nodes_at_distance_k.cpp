@@ -4,74 +4,80 @@ using namespace std;
 #define ll long long int
 #define vll vector<ll>
 
-class node
+class TreeNode
 {
 public:
-    ll data;
-    node *left, *right;
+    ll val;
+    TreeNode *left, *right;
 
-    node(ll d)
+    TreeNode(ll d)
     {
-        data = d;
+        val = d;
         left = NULL;
         right = NULL;
     }
 };
 
-void print_at_level_k(node *root, ll k)
+void getParents(TreeNode *cur, TreeNode *par, unordered_map<TreeNode *, TreeNode *> &mp)
 {
-    if (root == NULL)
+    mp[cur] = par;
+    if (!cur)
         return;
 
-    if (k == 0)
-    {
-        cout << root->data << " ";
-        return;
-    }
-
-    print_at_level_k(root->left, k - 1);
-    print_at_level_k(root->right, k - 1);
+    getParents(cur->left, cur, mp);
+    getParents(cur->right, cur, mp);
 }
 
 // Code starts here
-ll print_at_distance_k(node *root, node *target, ll k)
+void print_at_distance_k(TreeNode *root, TreeNode *target, ll k)
 {
-    if (!root)
-        return -1;
+    // Get Parent nodes for each node in the tree
+    unordered_map<TreeNode *, TreeNode *> par;
+    getParents(root, NULL, par);
 
-    if (root == target)
+    // Traverse radially outwards from the target node
+    unordered_map<TreeNode *, int> dis;
+    queue<TreeNode *> q;
+    q.push(target);
+    dis[target] = 0;
+    vector<int> ans;
+    while (!q.empty())
     {
-        print_at_level_k(target, k);
-        return 1;
+        TreeNode *cur = q.front();
+        q.pop();
+
+        if (dis[cur] == k)
+            ans.push_back(cur->val);
+
+        if (cur->left && dis.find(cur->left) == dis.end())
+        {
+            dis[cur->left] = dis[cur] + 1;
+            q.push(cur->left);
+        }
+        if (cur->right && dis.find(cur->right) == dis.end())
+        {
+            dis[cur->right] = dis[cur] + 1;
+            q.push(cur->right);
+        }
+        if (par[cur] && dis.find(par[cur]) == dis.end())
+        {
+            dis[par[cur]] = dis[cur] + 1;
+            q.push(par[cur]);
+        }
     }
 
-    ll dl = print_at_distance_k(root->left, target, k);
-    if (dl != -1)
+    for (auto node_at_distance_k : ans)
     {
-        if (dl == k)
-            cout << root->data << " ";
-        else
-            print_at_level_k(root->right, k - 1 - dl);
-
-        return dl + 1;
+        cout << node_at_distance_k << " ";
     }
-
-    ll dr = print_at_distance_k(root->right, target, k);
-    if (dr != -1)
-    {
-        if (dr == k)
-            cout << root->data << " ";
-        else
-            print_at_level_k(root->left, k - 1 - dr);
-
-        return dr + 1;
-    }
-
-    return -1;
 }
 
 /*
 Print all nodes at a distance K from the given node.
-Time Complexity = O(NK)
+Time Complexity = O(N)
+
+Ref: https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+
+Video Solution: https://www.youtube.com/watch?v=i9ORlEy6EsI&ab_channel=takeUforward
 
 */
