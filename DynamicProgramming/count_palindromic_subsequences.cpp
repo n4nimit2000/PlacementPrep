@@ -44,7 +44,7 @@ int main()
 Find the number of palindromic subsequences (need not necessarily be distinct) that can be formed in a given string.
 Ex:
 string = aab
-Outpu: 4  -> [a, a, aa, b]
+Output: 4  -> [a, a, aa, b]
 
 Time complexity = O(N^2)
 Space complexity = O(N^2)
