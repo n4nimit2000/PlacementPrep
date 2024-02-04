@@ -67,4 +67,9 @@ AABA
 Sample Output:
 3
 
+Applications of KMP Algorithm:
+ - https://leetcode.com/problems/repeated-string-match/description/
+ - https://www.interviewbit.com/problems/minimum-characters-required-to-make-a-string-palindromic/
+
+
 */
