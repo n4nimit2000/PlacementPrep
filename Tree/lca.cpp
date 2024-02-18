@@ -141,4 +141,7 @@ LCA of 7 and 12 is 2
 LCA of 11 and 12 is 9
 LCA of 11 and 10 is 6
 
+
+Sample Problem: https://leetcode.com/problems/kth-ancestor-of-a-tree-node/
+
 */
