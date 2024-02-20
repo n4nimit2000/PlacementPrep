@@ -62,4 +62,9 @@ Sample Input:
 Sample Output:
 Maximum sum Rectangle value: 29
 
+
+Variations of this Problem:
+ - Largest Rectangular Sub-matrix whose sum is 0
+ - Largest area rectangular sub-matrix with equal number of 1's and 0's (convert 0's to -1's, then it's same as the previous problem)
+
 */
